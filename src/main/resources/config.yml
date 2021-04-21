@@ -1,1 +1,10 @@
-token: "TOKEN_HERE"
+## FOMO by jamesinaxx
+## bot:
+##  token: The token from discordapi.com
+##  channel: The channel you would like the bot to watch and write to
+##  prefix: The bot's prefix for Discord commands
+
+bot:
+  token: "TOKEN_HERE"
+  channel: "CHANNEL_NAME"
+  prefix: "PREFIX_HERE"
