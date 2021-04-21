@@ -1,6 +1,5 @@
 package com.jamesinaxx.fomo;
 
-import com.jamesinaxx.fomo.minecraft.Events;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import org.bukkit.Bukkit;
