@@ -43,6 +43,7 @@ public final class FOMO extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        jda.shutdownNow();
         Bukkit.getLogger().info(Color.GREEN + "Successfully shutdown FOMO");
     }
 
