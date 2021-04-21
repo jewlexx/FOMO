@@ -1,7 +1,8 @@
 package com.jamesinaxx.fomo;
 
-import com.jamesinaxx.fomo.discord.DFOMO;
 import com.jamesinaxx.fomo.minecraft.Events;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -12,6 +13,8 @@ import javax.security.auth.login.LoginException;
 public final class FOMO extends JavaPlugin {
 
     public static FileConfiguration config;
+
+    public static JDA jda = null;
 
     @Override
     public void onEnable() {
@@ -24,7 +27,11 @@ public final class FOMO extends JavaPlugin {
         String botToken = this.getConfig().getString("bot.token");
 
         try {
-            new DFOMO(botToken);
+            jda = JDABuilder.createDefault(botToken).build();
+
+            jda.awaitReady();
+
+            Bukkit.getLogger().info(Color.GREEN + "Successfully initialized FOMO discord bot");
         } catch (LoginException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -37,4 +44,5 @@ public final class FOMO extends JavaPlugin {
         // Plugin shutdown logic
         Bukkit.getLogger().info(Color.GREEN + "Successfully shutdown FOMO");
     }
+
 }

@@ -12,19 +12,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 import javax.security.auth.login.LoginException;
 import java.util.Objects;
 
-public class DFOMO {
+import static com.jamesinaxx.fomo.FOMO.jda;
 
-    private static JDA jda = null;
-
-    public DFOMO(String token) throws LoginException, InterruptedException {
-
-        jda = JDABuilder.createDefault(token).build();
-
-        jda.awaitReady();
-
-        Bukkit.getLogger().info(Color.GREEN + "Successfully initialized FOMO discord bot");
-    }
-
+public class Fun {
     public static void sendMessage(String msg, String name) {
         assert jda != null;
         TextChannel channel = jda.getTextChannelsByName(Objects.requireNonNull(FOMO.config.getString("bot.channel")), true).get(0);
