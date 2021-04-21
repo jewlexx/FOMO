@@ -59,3 +59,5 @@ Now try messaging in Discord and watch it show up in Minecraft, and vice versa
 **Feel free to fork & PR**
 
 There are no direct guidelines to modifications beyond what the **MIT** license allows but please be detailed in your PR description, or it will be ignored
+
+If are not experienced or do not want to contribute in code, you can donate [here](https://www.paypal.com/cgi-bin/webscr?return=https://www.spigotmc.org/resources/fomo.91554/&cn=Add+special+instructions+to+the+addon+author()&business=melissa_grasso73%40hotmail.com&bn=PP-DonationsBF:btn_donateCC_LG.gif:NonHosted&cancel_return=https://www.spigotmc.org/resources/fomo.91554/&lc=US&item_name=FOMO+(from+spigotmc.org)&cmd=_donations&rm=1&no_shipping=1&currency_code=USD)
