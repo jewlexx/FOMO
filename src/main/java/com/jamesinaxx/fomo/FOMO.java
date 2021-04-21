@@ -12,11 +12,11 @@ public final class FOMO extends JavaPlugin {
         // Plugin startup logic
 
         this.saveDefaultConfig();
-        String botToken = this.getConfig().getString("token");
+        String botToken = this.getConfig().getString("bot.token");
 
         try {
             new DFOMO(botToken);
-        } catch (LoginException e) {
+        } catch (LoginException | InterruptedException e) {
             e.printStackTrace();
         }
 
