@@ -5,4 +5,4 @@
 
 bot:
   token: "TOKEN_HERE"
-  channel: "CHANNEL_NAME"
+  channel: "CHANNEL_ID"
