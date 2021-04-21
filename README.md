@@ -27,8 +27,8 @@ Help with your FOMO when all your friends are playing on a Minecraft server and 
 8. Click copy under **Client ID**
 
 9. Replace {CLIENT_ID} in the following link with your **Client ID** | *https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&permissions=330752&scope=bot*
-   
-   10. Follow this link and invite the bot to your desired server
+    
+10. Follow this link and invite the bot to your desired server
        
        
    
