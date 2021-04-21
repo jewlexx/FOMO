@@ -56,6 +56,12 @@ Set the server id, bot token, and easily allow people to connect with those in D
 
 Now try messaging in Discord and watch it show up in Minecraft, and vice versa
 
+
+
+---
+
+
+
 ## Contributing
 
 **Feel free to fork & PR**
