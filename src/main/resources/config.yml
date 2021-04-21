@@ -2,9 +2,7 @@
 ## bot:
 ##  token: The token from discordapi.com
 ##  channel: The channel you would like the bot to watch and write to (id | right click channel and press copy id)
-##  prefix: The bot's prefix for Discord commands
 
 bot:
   token: "TOKEN_HERE"
   channel: "CHANNEL_NAME"
-  prefix: "PREFIX_HERE"
