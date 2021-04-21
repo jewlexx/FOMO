@@ -7,15 +7,20 @@ import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import sun.tools.jconsole.JConsole;
 
 import javax.security.auth.login.LoginException;
 import java.util.Objects;
+
+import static com.jamesinaxx.fomo.discord.Send.sendMessage;
 
 public final class FOMO extends JavaPlugin {
 
     public static FileConfiguration config;
 
     public static JDA jda = null;
+
+    public static TextChannel channel = null;
 
     @Override
     public void onEnable() {
@@ -32,28 +37,28 @@ public final class FOMO extends JavaPlugin {
 
             jda.awaitReady();
 
+            channel = jda.getTextChannelById(Objects.requireNonNull(FOMO.config.getString("bot.channel")));
+
             jda.addEventListener(new com.jamesinaxx.fomo.discord.Events());
 
-            Bukkit.getLogger().info(Color.GREEN + "Successfully initialized FOMO discord bot");
+            Bukkit.getLogger().info("Successfully initialized FOMO discord bot");
         } catch (LoginException | InterruptedException e) {
             e.printStackTrace();
         }
 
-        Bukkit.getLogger().info(Color.GREEN + "Successfully initialized FOMO");
+        sendMessage("[Minecraft] Server is now running!");
 
-        TextChannel channel = jda.getTextChannelById(Objects.requireNonNull(FOMO.config.getString("bot.channel")));
-        assert channel != null;
-        channel.sendMessage("[Minecraft] Server is now running!").queue();
+        Bukkit.getLogger().info("Successfully initialized FOMO");
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        jda.shutdownNow();
+        sendMessage("[Minecraft] Server has shut down :(");
+        channel = null;
+        jda.shutdown();
+        jda = null;
         Bukkit.getLogger().info(Color.GREEN + "Successfully shutdown FOMO");
-        TextChannel channel = jda.getTextChannelById(Objects.requireNonNull(FOMO.config.getString("bot.channel")));
-        assert channel != null;
-        channel.sendMessage("[Minecraft] Server has shut down :(").queue();
     }
 
 }
