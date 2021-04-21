@@ -2,12 +2,14 @@ package com.jamesinaxx.fomo;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.TextChannel;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.security.auth.login.LoginException;
+import java.util.Objects;
 
 public final class FOMO extends JavaPlugin {
 
@@ -38,6 +40,10 @@ public final class FOMO extends JavaPlugin {
         }
 
         Bukkit.getLogger().info(Color.GREEN + "Successfully initialized FOMO");
+
+        TextChannel channel = jda.getTextChannelById(Objects.requireNonNull(FOMO.config.getString("bot.channel")));
+        assert channel != null;
+        channel.sendMessage("[Minecraft] Server is now running!").queue();
     }
 
     @Override
@@ -45,6 +51,9 @@ public final class FOMO extends JavaPlugin {
         // Plugin shutdown logic
         jda.shutdownNow();
         Bukkit.getLogger().info(Color.GREEN + "Successfully shutdown FOMO");
+        TextChannel channel = jda.getTextChannelById(Objects.requireNonNull(FOMO.config.getString("bot.channel")));
+        assert channel != null;
+        channel.sendMessage("[Minecraft] Server has shut down :(").queue();
     }
 
 }
