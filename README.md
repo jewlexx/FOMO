@@ -4,6 +4,14 @@ Help with your FOMO when all your friends are playing on a Minecraft server, and
 
 *Currently in beta for testing purposes, no new features are in the works as of now*
 
+
+
+## Sync Minecraft and Discord chat easily
+
+Set the server id, bot token, and easily allow people to connect with those in Discord to connect with those playing Minecraft
+
+
+
 ## Setup
 
 ### Part 1 - The Discord Side
@@ -27,8 +35,8 @@ Help with your FOMO when all your friends are playing on a Minecraft server, and
 9. Replace {CLIENT_ID} in the following link with your **Client ID** | *https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&permissions=330752&scope=bot*
 
 10. Follow this link and invite the bot to your desired server
-
-   ---
+    
+    ---
 
 ### Part 2 - The Minecraft Side
 
@@ -46,7 +54,7 @@ Help with your FOMO when all your friends are playing on a Minecraft server, and
 
 7. Run the server again, and you're done!
 
-Now try messaging in discord and watch it show up in Minecraft, and vice versa
+Now try messaging in Discord and watch it show up in Minecraft, and vice versa
 
 ## Contributing
 
