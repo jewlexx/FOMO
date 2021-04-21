@@ -8,8 +8,6 @@ Help with your FOMO when all your friends are playing on a Minecraft server, and
 
 Set the server id, bot token, and easily allow people to connect with those in Discord to connect with those playing Minecraft
 
----
-
 ## Setup
 
 ### Part 1 - The Discord Side
