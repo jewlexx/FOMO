@@ -20,7 +20,7 @@ public final class FOMO extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
 
-        Bukkit.getPluginManager().registerEvents(new Events(), this);
+        Bukkit.getPluginManager().registerEvents(new com.jamesinaxx.fomo.minecraft.Events(), this);
 
         this.saveDefaultConfig();
         config = this.getConfig();
@@ -30,6 +30,8 @@ public final class FOMO extends JavaPlugin {
             jda = JDABuilder.createDefault(botToken).build();
 
             jda.awaitReady();
+
+            jda.addEventListener(new com.jamesinaxx.fomo.discord.Events());
 
             Bukkit.getLogger().info(Color.GREEN + "Successfully initialized FOMO discord bot");
         } catch (LoginException | InterruptedException e) {
