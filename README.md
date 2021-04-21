@@ -1,6 +1,6 @@
 # FOMO
 
-Help with your FOMO when all your friends are playing on a Minecraft server and you can't play with them
+Help with your FOMO when all your friends are playing on a Minecraft server, and you can't play with them
 
 *Currently in beta for testing purposes, no new features are in the works as of now*
 
@@ -32,7 +32,7 @@ Help with your FOMO when all your friends are playing on a Minecraft server and 
 
 ### Part 2 - The Minecraft Side
 
-1. Download the latest release from Github - *Should be a .jar file*
+1. Download the latest release from GitHub - *Should be a .jar file*
 
 2. Paste this into the plugins folder in your server - *This assumes you have already run the server once*
 
@@ -44,7 +44,7 @@ Help with your FOMO when all your friends are playing on a Minecraft server and 
 
 6. Change **channel:** to the id of the channel you would like the bot to watch - *Right click and press __Copy ID__*
 
-7. Run the server again and you're done!
+7. Run the server again, and you're done!
 
 Now try messaging in discord and watch it show up in Minecraft, and vice versa
 
@@ -52,4 +52,4 @@ Now try messaging in discord and watch it show up in Minecraft, and vice versa
 
 **Feel free to fork & PR**
 
-There are no direct guidelines to modifications beyond what the **MIT** license allows but please be detailed in your PR description or it will be ignored
+There are no direct guidelines to modifications beyond what the **MIT** license allows but please be detailed in your PR description, or it will be ignored
