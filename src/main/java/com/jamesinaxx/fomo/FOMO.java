@@ -5,7 +5,6 @@ import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.channel.MessageChannel;
-import discord4j.core.object.entity.channel.TextChannel;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.configuration.file.FileConfiguration;
