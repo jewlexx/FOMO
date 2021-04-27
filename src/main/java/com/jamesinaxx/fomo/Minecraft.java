@@ -1,4 +1,4 @@
-package com.jamesinaxx.fomo.minecraft;
+package com.jamesinaxx.fomo;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -6,9 +6,9 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import static com.jamesinaxx.fomo.discord.Send.sendMessage;
+import static com.jamesinaxx.fomo.Discord.sendMessage;
 
-public class Events implements Listener {
+public class Minecraft implements Listener {
 
     @EventHandler
     public void onMessage(AsyncPlayerChatEvent event)  {
