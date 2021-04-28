@@ -1,9 +1,9 @@
 package com.jamesinaxx.fomo;
 
+import com.jamesinaxx.fomo.Minecraft.Lag;
+import com.jamesinaxx.fomo.Minecraft.Minecraft;
 import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -12,8 +12,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import javax.security.auth.login.LoginException;
 import java.util.Objects;
 
-import static com.jamesinaxx.fomo.Discord.ConnectToDiscord;
-import static com.jamesinaxx.fomo.Discord.sendMessage;
+import static com.jamesinaxx.fomo.Discord.Discord.ConnectToDiscord;
+import static com.jamesinaxx.fomo.Discord.Discord.sendMessage;
 
 public final class FOMO extends JavaPlugin {
 
@@ -27,7 +27,9 @@ public final class FOMO extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
 
-        Bukkit.getPluginManager().registerEvents(new com.jamesinaxx.fomo.Minecraft(), this);
+        Bukkit.getPluginManager().registerEvents(new Minecraft(), this);
+
+        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
 
         saveDefaultConfig();
         config = this.getConfig();

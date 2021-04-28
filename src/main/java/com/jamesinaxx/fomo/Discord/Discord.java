@@ -1,5 +1,6 @@
-package com.jamesinaxx.fomo;
+package com.jamesinaxx.fomo.Discord;
 
+import com.jamesinaxx.fomo.FOMO;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Message;
@@ -48,7 +49,7 @@ public class Discord extends ListenerAdapter {
         return true;
     }
 
-    static void ConnectToDiscord(String token) throws LoginException {
+    public static void ConnectToDiscord(String token) throws LoginException {
 
         client = JDABuilder
                 .createLight(token, GatewayIntent.GUILD_MESSAGES)
