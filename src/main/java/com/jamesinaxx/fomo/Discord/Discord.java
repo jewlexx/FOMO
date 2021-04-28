@@ -1,12 +1,15 @@
 package com.jamesinaxx.fomo.Discord;
 
 import com.jamesinaxx.fomo.FOMO;
+import com.jamesinaxx.fomo.Minecraft.Lag;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.requests.restaction.MessageAction;
 import org.bukkit.Bukkit;
 
 import javax.security.auth.login.LoginException;
@@ -36,14 +39,26 @@ public class Discord extends ListenerAdapter {
         if (message.getContentRaw().startsWith(prefix)) {
             String command = message.getContentRaw().substring(prefix.length() - 1);
 
+            MessageAction cmdReply = null;
+
             switch (command) {
                 case "test":
-                    message.reply("This is kinda a test tbh").queue();
+                    cmdReply = message.reply("This is kinda a test tbh");
                     break;
                 case "online":
-                    message.reply(Bukkit.getOnlineMode() + " out of " + Bukkit.getMaxPlayers() + " are online!").queue();
+                    cmdReply = message.reply(Bukkit.getOnlineMode()
+                            + " out of "
+                            + Bukkit.getMaxPlayers() + " are online!");
                     break;
+                case "tps":
+                    if (Objects.requireNonNull(message.getMember()).hasPermission(Permission.ADMINISTRATOR))
+                        cmdReply = message.reply("Server TPS is " + Lag.getTPS());
             }
+
+            if (cmdReply != null) {
+                cmdReply.queue();
+            }
+
             return false;
         }
         return true;
