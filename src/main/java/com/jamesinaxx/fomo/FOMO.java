@@ -12,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import javax.security.auth.login.LoginException;
 import java.util.Objects;
 
+import static com.jamesinaxx.fomo.Discord.ConnectToDiscord;
 import static com.jamesinaxx.fomo.Discord.sendMessage;
 
 public final class FOMO extends JavaPlugin {
@@ -57,21 +58,6 @@ public final class FOMO extends JavaPlugin {
             client = null;
         }
         getLogger().info(Color.GREEN + "Successfully shutdown FOMO");
-    }
-
-    private void ConnectToDiscord(String token) throws LoginException {
-
-        client = JDABuilder
-                .createLight(token, GatewayIntent.GUILD_MESSAGES)
-                .addEventListeners(new Discord())
-                .build();
-
-        channel = client.getTextChannelById(config.getLong("bot.channel"));
-
-        sendMessage("[Minecraft] Server is now running!");
-
-        // Log a message that the connection was successful and log the url that is needed to invite the bot
-        getLogger().info("Connected to Discord as " + Objects.requireNonNull(client.getSelfUser().getAsTag()));
     }
 
 }
