@@ -34,8 +34,14 @@ public class Discord extends ListenerAdapter {
         String prefix = Objects.requireNonNull(config.getString("bot.prefix"));
         if (message.getContentRaw().startsWith(prefix)) {
             String command = message.getContentRaw().substring(prefix.length() - 1);
-            if (command.equals("test")) {
-                message.reply("This is kinda a test tbh").queue();
+
+            switch (command) {
+                case "test":
+                    message.reply("This is kinda a test tbh").queue();
+                    break;
+                case "online":
+                    message.reply(Bukkit.getOnlineMode() + " out of " + Bukkit.getMaxPlayers() + " are online!").queue();
+                    break;
             }
             return false;
         }
