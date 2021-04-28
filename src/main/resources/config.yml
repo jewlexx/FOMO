@@ -1,10 +1,6 @@
 ## FOMO by jamesinaxx
 ## bot:
 ##  token: The token from discordapi.com
-##  channel: The channel you would like the bot to watch and write to (id | right click channel and press copy id)
+##  channel: The channel you would like the bot to watch and write to (id | right click channel and press copy id,
+##                                                                    also remove quotes as this can cause issues)
 ##  prefix: The command prefix for the bot to listen for
-
-bot:
-  token: "TOKEN_HERE"
-  channel: CHANNEL_ID
-  prefix: "BOT_PREFIX"

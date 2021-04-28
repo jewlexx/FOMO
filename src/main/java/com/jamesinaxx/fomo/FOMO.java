@@ -29,8 +29,12 @@ public final class FOMO extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new com.jamesinaxx.fomo.Minecraft(), this);
 
-        this.saveDefaultConfig();
+        saveDefaultConfig();
         config = this.getConfig();
+        config.addDefault("bot.token", "TOKEN_HERE");
+        config.addDefault("bot.channel", "CHANNEL_ID_HERE");
+        config.addDefault("bot.prefix", "!");
+        saveConfig();
         String botToken = this.getConfig().getString("bot.token");
 
         if (Objects.requireNonNull(botToken).isEmpty() || Objects.requireNonNull(this.getConfig().getString("bot.channel")).isEmpty()) {

@@ -2,6 +2,7 @@ package com.jamesinaxx.fomo;
 
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -16,7 +17,6 @@ public class Discord extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        String prefix = Objects.requireNonNull(config.getString("bot.prefix"));
         if (event.getChannel().getIdLong() == FOMO.config.getLong("bot.channel") && !event.getAuthor().isBot()) {
             Bukkit.broadcastMessage("<Discord/" + event.getAuthor().getAsTag() + "> " + event.getMessage().getContentRaw());
         }
@@ -26,6 +26,14 @@ public class Discord extends ListenerAdapter {
         if (channel != null && client != null) {
             channel.sendMessage(msg).queue();
         }
+    }
+
+    private static void CommandHandler(Message message) {
+        String prefix = Objects.requireNonNull(config.getString("bot.prefix"));
+        if (message.getContentRaw().startsWith(prefix)) {
+
+        }
+
     }
 
     static void ConnectToDiscord(String token) throws LoginException {
