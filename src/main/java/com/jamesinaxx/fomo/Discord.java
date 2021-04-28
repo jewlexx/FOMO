@@ -17,7 +17,9 @@ public class Discord extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        if (event.getChannel().getIdLong() == FOMO.config.getLong("bot.channel") && !event.getAuthor().isBot()) {
+        if (event.getChannel().getIdLong() == FOMO.config.getLong("bot.channel")
+                && !event.getAuthor().isBot()
+                && CommandHandler(event.getMessage())) {
             Bukkit.broadcastMessage("<Discord/" + event.getAuthor().getAsTag() + "> " + event.getMessage().getContentRaw());
         }
     }
@@ -28,12 +30,16 @@ public class Discord extends ListenerAdapter {
         }
     }
 
-    private static void CommandHandler(Message message) {
+    private static boolean CommandHandler(Message message) {
         String prefix = Objects.requireNonNull(config.getString("bot.prefix"));
         if (message.getContentRaw().startsWith(prefix)) {
-
+            String command = message.getContentRaw().substring(prefix.length() - 1);
+            if (command.equals("test")) {
+                message.reply("This is kinda a test tbh").queue();
+            }
+            return false;
         }
-
+        return true;
     }
 
     static void ConnectToDiscord(String token) throws LoginException {
