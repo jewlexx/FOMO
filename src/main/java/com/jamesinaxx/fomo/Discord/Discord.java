@@ -19,6 +19,8 @@ import static com.jamesinaxx.fomo.FOMO.*;
 
 public class Discord extends ListenerAdapter {
 
+    public static long lastPresenceUpdate = System.currentTimeMillis();
+
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         if (event.getChannel().getIdLong() == FOMO.config.getLong("bot.channel")
@@ -37,22 +39,24 @@ public class Discord extends ListenerAdapter {
     private static boolean CommandHandler(Message message) {
         String prefix = Objects.requireNonNull(config.getString("bot.prefix"));
         if (message.getContentRaw().startsWith(prefix)) {
-            String command = message.getContentRaw().substring(prefix.length() - 1);
+            String command = message.getContentRaw().substring(prefix.length());
 
             MessageAction cmdReply = null;
+
+            System.out.println(command);
 
             switch (command) {
                 case "test":
                     cmdReply = message.reply("This is kinda a test tbh");
                     break;
                 case "online":
-                    cmdReply = message.reply(Bukkit.getOnlineMode()
+                    cmdReply = message.reply(Bukkit.getOnlinePlayers().size()
                             + " out of "
                             + Bukkit.getMaxPlayers() + " are online!");
                     break;
                 case "tps":
                     if (Objects.requireNonNull(message.getMember()).hasPermission(Permission.ADMINISTRATOR))
-                        cmdReply = message.reply("Server TPS is " + Lag.getTPS());
+                        cmdReply = message.reply("Server TPS is " + Math.round(Lag.getTPS()));
             }
 
             if (cmdReply != null) {
@@ -73,13 +77,21 @@ public class Discord extends ListenerAdapter {
 
         channel = client.getTextChannelById(config.getLong("bot.channel"));
 
-        sendMessage("[Minecraft] Server is now running!");
+        UpdatePresence();
 
-        client.getPresence().setActivity(Activity.watching(Bukkit.getOnlinePlayers().size()
-                + "/"
-                + Bukkit.getMaxPlayers() + " playing Minecraft"));
+        sendMessage("[Minecraft] Server is now running!");
 
         // Log a message that the connection was successful and log the url that is needed to invite the bot
         Bukkit.getLogger().info("[FOMO] Connected to Discord as " + Objects.requireNonNull(client.getSelfUser().getAsTag()));
+    }
+
+    public static void UpdatePresence() {
+        if (System.currentTimeMillis() - lastPresenceUpdate >= 300000) {
+            client.getPresence().setActivity(Activity.watching(Bukkit.getOnlinePlayers().size()
+                    + "/"
+                    + Bukkit.getMaxPlayers() + " playing Minecraft"));
+
+            lastPresenceUpdate = System.currentTimeMillis();
+        }
     }
 }
