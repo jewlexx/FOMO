@@ -43,8 +43,6 @@ public class Discord extends ListenerAdapter {
 
             MessageAction cmdReply = null;
 
-            System.out.println(command);
-
             switch (command) {
                 case "test":
                     cmdReply = message.reply("This is kinda a test tbh");
