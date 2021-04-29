@@ -2,6 +2,7 @@ package com.jamesinaxx.fomo.Discord;
 
 import com.jamesinaxx.fomo.FOMO;
 import com.jamesinaxx.fomo.Minecraft.Lag;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Activity;
@@ -11,15 +12,18 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.requests.restaction.MessageAction;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.HumanEntity;
 
 import javax.security.auth.login.LoginException;
+import java.awt.*;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static com.jamesinaxx.fomo.FOMO.*;
 
 public class Discord extends ListenerAdapter {
 
-    public static long lastPresenceUpdate = System.currentTimeMillis();
+    public static long lastPresenceUpdate = System.currentTimeMillis() - 300000;
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
@@ -44,13 +48,17 @@ public class Discord extends ListenerAdapter {
             MessageAction cmdReply = null;
 
             switch (command) {
-                case "test":
-                    cmdReply = message.reply("This is kinda a test tbh");
-                    break;
                 case "online":
-                    cmdReply = message.reply(Bukkit.getOnlinePlayers().size()
-                            + " out of "
-                            + Bukkit.getMaxPlayers() + " are online!");
+                    String onlinePlayers = Bukkit.getOnlinePlayers().size() + " out of " + Bukkit.getMaxPlayers() + " players are online!";
+                    EmbedBuilder embedBuilder = new EmbedBuilder();
+                    cmdReply = message.reply(embedBuilder
+                            .setTitle(onlinePlayers)
+                            .setFooter("FOMO by jamesinaxx")
+                            .addField("Online players: ", Bukkit.getOnlinePlayers()
+                                    .stream().map(HumanEntity::getName)
+                                    .collect(Collectors.joining(", ")), false)
+                            .setColor(Color.CYAN)
+                            .build());
                     break;
                 case "tps":
                     if (Objects.requireNonNull(message.getMember()).hasPermission(Permission.ADMINISTRATOR))
