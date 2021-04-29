@@ -1,32 +1,28 @@
 // This File comes courtesy of LazyLemons
 package com.jamesinaxx.fomo.Minecraft;
 
-public class Lag
-        implements Runnable
-{
-    public static int TICK_COUNT= 0;
-    public static long[] TICKS= new long[600];
+public class Lag implements Runnable {
 
-    public static double getTPS()
-    {
-        return getTPS(100);
+  public static int TICK_COUNT = 0;
+  public static long[] TICKS = new long[600];
+
+  public static double getTPS() {
+    return getTPS(100);
+  }
+
+  public static double getTPS(int ticks) {
+    if (TICK_COUNT < ticks) {
+      return 20.0D;
     }
+    int target = (TICK_COUNT - 1 - ticks) % TICKS.length;
+    long elapsed = System.currentTimeMillis() - TICKS[target];
 
-    public static double getTPS(int ticks)
-    {
-        if (TICK_COUNT< ticks) {
-            return 20.0D;
-        }
-        int target = (TICK_COUNT- 1 - ticks) % TICKS.length;
-        long elapsed = System.currentTimeMillis() - TICKS[target];
+    return ticks / (elapsed / 1000.0D);
+  }
 
-        return ticks / (elapsed / 1000.0D);
-    }
+  public void run() {
+    TICKS[(TICK_COUNT % TICKS.length)] = System.currentTimeMillis();
 
-    public void run()
-    {
-        TICKS[(TICK_COUNT% TICKS.length)] = System.currentTimeMillis();
-
-        TICK_COUNT+= 1;
-    }
+    TICK_COUNT += 1;
+  }
 }
