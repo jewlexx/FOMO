@@ -2,6 +2,5 @@ name: FOMO
 version: ${project.version}
 main: com.jamesinaxx.fomo.FOMO
 api-version: 1.13
-load: STARTUP
 authors: [ jamesinaxx ]
 description: Help with your FOMO when all your friends are playing on a Minecraft server and you can't play with them
