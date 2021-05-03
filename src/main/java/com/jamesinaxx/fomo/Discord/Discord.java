@@ -7,15 +7,12 @@ import com.jamesinaxx.fomo.Minecraft.Lag;
 import java.awt.*;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import javax.security.auth.login.LoginException;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.requests.restaction.MessageAction;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.HumanEntity;
@@ -41,6 +38,9 @@ public class Discord extends ListenerAdapter {
   }
 
   public static void sendMessage(String msg) {
+    UpdatePresence();
+    if (channel == null) System.out.println("Channel is null");
+    if (client == null) System.out.println("Client is null");
     if (channel != null && client != null) {
       channel.sendMessage(msg).queue();
     }
@@ -97,42 +97,18 @@ public class Discord extends ListenerAdapter {
     return true;
   }
 
-  public static void ConnectToDiscord(String token) throws LoginException {
-    client =
-      JDABuilder
-        .createLight(token, GatewayIntent.GUILD_MESSAGES)
-        .addEventListeners(new Discord())
-        .build();
-
-    channel = client.getTextChannelById(config.getLong("bot.channel"));
-
-    UpdatePresence();
-
-    sendMessage("[Minecraft] Server is now running!");
-
-    // Log a message that the connection was successful and log the url that is needed to invite the bot
-    Bukkit
-      .getLogger()
-      .info(
-        "[FOMO] Connected to Discord as " +
-        Objects.requireNonNull(client.getSelfUser().getAsTag())
-      );
-  }
-
   public static void UpdatePresence() {
-    if (System.currentTimeMillis() - lastPresenceUpdate >= 300000) {
-      client
-        .getPresence()
-        .setActivity(
-          Activity.watching(
-            Bukkit.getOnlinePlayers().size() +
-            "/" +
-            Bukkit.getMaxPlayers() +
-            " playing Minecraft"
-          )
-        );
+    client
+      .getPresence()
+      .setActivity(
+        Activity.watching(
+          Bukkit.getOnlinePlayers().size() +
+          "/" +
+          Bukkit.getMaxPlayers() +
+          " playing Minecraft"
+        )
+      );
 
-      lastPresenceUpdate = System.currentTimeMillis();
-    }
+    lastPresenceUpdate = System.currentTimeMillis();
   }
 }

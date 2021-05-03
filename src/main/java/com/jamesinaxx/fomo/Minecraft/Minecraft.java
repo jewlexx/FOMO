@@ -1,6 +1,5 @@
 package com.jamesinaxx.fomo.Minecraft;
 
-import static com.jamesinaxx.fomo.Discord.Discord.UpdatePresence;
 import static com.jamesinaxx.fomo.Discord.Discord.sendMessage;
 
 import org.bukkit.event.EventHandler;
@@ -19,7 +18,6 @@ public class Minecraft implements Listener {
       "] " +
       event.getMessage()
     );
-    UpdatePresence();
   }
 
   @EventHandler
@@ -29,7 +27,6 @@ public class Minecraft implements Listener {
       event.getPlayer().getDisplayName() +
       " has joined the chat"
     );
-    UpdatePresence();
   }
 
   @EventHandler
@@ -37,6 +34,5 @@ public class Minecraft implements Listener {
     sendMessage(
       "[Minecraft] " + event.getPlayer().getDisplayName() + " has left the chat"
     );
-    UpdatePresence();
   }
 }
