@@ -10,6 +10,13 @@ Set the server id, bot token, and easily allow people to connect with those in D
 
 ## Setup
 
+**Note: There have been issues with config setup. Please make sure it follows this template if you have issues**
+``` YAML
+token: XXXXXXXXX
+channel: 1234567890
+prefix: X
+```
+
 ### Part 1 - The Discord Side
 
 1. First, go to https://discordapi.com/
