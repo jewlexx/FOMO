@@ -24,7 +24,7 @@ public class Discord extends ListenerAdapter {
   @Override
   public void onMessageReceived(MessageReceivedEvent event) {
     if (
-      event.getChannel().getIdLong() == FOMO.config.getLong("channel") &&
+      event.getChannel().getId().equals(config.getString("channel")) &&
       !event.getAuthor().isBot() &&
       CommandHandler(event.getMessage())
     ) {
