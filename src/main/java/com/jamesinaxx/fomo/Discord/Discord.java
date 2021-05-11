@@ -24,7 +24,7 @@ public class Discord extends ListenerAdapter {
   @Override
   public void onMessageReceived(MessageReceivedEvent event) {
     if (
-      event.getChannel().getIdLong() == FOMO.config.getLong("bot.channel") &&
+      event.getChannel().getIdLong() == FOMO.config.getLong("channel") &&
       !event.getAuthor().isBot() &&
       CommandHandler(event.getMessage())
     ) {
@@ -47,7 +47,7 @@ public class Discord extends ListenerAdapter {
   }
 
   private static boolean CommandHandler(Message message) {
-    String prefix = Objects.requireNonNull(config.getString("bot.prefix"));
+    String prefix = Objects.requireNonNull(config.getString("prefix"));
     if (message.getContentRaw().startsWith(prefix)) {
       String command = message.getContentRaw().substring(prefix.length());
 

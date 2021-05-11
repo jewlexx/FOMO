@@ -37,7 +37,12 @@ public final class FOMO extends JavaPlugin {
       .scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
 
     saveDefaultConfig();
-    String botToken = this.getConfig().getString("bot.token");
+    config = this.getConfig();
+    config.addDefault("token", "TOKEN_HERE");
+    config.addDefault("channel", "CHANNEL_ID_HERE");
+    config.addDefault("prefix", "!");
+    saveConfig();
+    String botToken = this.getConfig().getString("token");
 
     if (botToken == null || botToken.equals("TOKEN_HERE") || this.getConfig().getString("bot.channel") == null || this.getConfig().getString("bot.channel").equals("CHANNEL_HERE")) {
       getLogger().severe("Please update FOMO/config.yml");
@@ -53,7 +58,7 @@ public final class FOMO extends JavaPlugin {
 
       client.awaitReady();
 
-      channel = client.getTextChannelById(config.getLong("bot.channel"));
+      channel = client.getTextChannelById(config.getLong("channel"));
 
       UpdatePresence();
 
@@ -73,7 +78,7 @@ public final class FOMO extends JavaPlugin {
     if (
       Objects.requireNonNull(botToken).isEmpty() ||
       Objects
-        .requireNonNull(this.getConfig().getString("bot.channel"))
+        .requireNonNull(this.getConfig().getString("channel"))
         .isEmpty()
     ) {
       Bukkit
