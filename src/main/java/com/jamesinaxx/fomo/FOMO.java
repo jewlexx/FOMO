@@ -1,20 +1,21 @@
 package com.jamesinaxx.fomo;
 
-import static com.jamesinaxx.fomo.Discord.Discord.*;
-
 import com.jamesinaxx.fomo.Discord.Discord;
 import com.jamesinaxx.fomo.Minecraft.Lag;
 import com.jamesinaxx.fomo.Minecraft.Minecraft;
-import java.util.Objects;
-import javax.security.auth.login.LoginException;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.bukkit.Bukkit;
-import org.bukkit.Color;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import javax.security.auth.login.LoginException;
+import java.util.Objects;
+
+import static com.jamesinaxx.fomo.Discord.Discord.UpdatePresence;
+import static com.jamesinaxx.fomo.Discord.Discord.sendMessage;
 
 public final class FOMO extends JavaPlugin {
 
@@ -37,11 +38,16 @@ public final class FOMO extends JavaPlugin {
 
     saveDefaultConfig();
     config = this.getConfig();
-    config.addDefault("bot.token", "TOKEN_HERE");
-    config.addDefault("bot.channel", "CHANNEL_ID_HERE");
-    config.addDefault("bot.prefix", "!");
+    config.addDefault("token", "TOKEN_HERE");
+    config.addDefault("channel", "CHANNEL_ID_HERE");
+    config.addDefault("prefix", "!");
     saveConfig();
-    String botToken = this.getConfig().getString("bot.token");
+    String botToken = this.getConfig().getString("token");
+
+    if (botToken == null || botToken.equals("TOKEN_HERE") || this.getConfig().getString("bot.channel") == null || this.getConfig().getString("bot.channel").equals("CHANNEL_HERE")) {
+      getLogger().severe("Please update FOMO/config.yml");
+      Bukkit.getPluginManager().disablePlugin(this);
+    }
 
     try {
       client =
@@ -52,7 +58,7 @@ public final class FOMO extends JavaPlugin {
 
       client.awaitReady();
 
-      channel = client.getTextChannelById(config.getLong("bot.channel"));
+      channel = client.getTextChannelById(config.getLong("channel"));
 
       UpdatePresence();
 
@@ -72,7 +78,7 @@ public final class FOMO extends JavaPlugin {
     if (
       Objects.requireNonNull(botToken).isEmpty() ||
       Objects
-        .requireNonNull(this.getConfig().getString("bot.channel"))
+        .requireNonNull(this.getConfig().getString("channel"))
         .isEmpty()
     ) {
       Bukkit
@@ -96,6 +102,6 @@ public final class FOMO extends JavaPlugin {
       client.shutdown();
       client = null;
     }
-    getLogger().info(Color.GREEN + "Successfully shutdown FOMO");
+    getLogger().info("Successfully shutdown FOMO");
   }
 }

@@ -5,7 +5,7 @@
 
     <groupId>com.jamesinaxx</groupId>
     <artifactId>FOMO</artifactId>
-    <version>0.3</version>
+    <version>0.4</version>
     <packaging>jar</packaging>
 
     <name>FOMO</name>
