@@ -2,6 +2,7 @@ package com.jamesinaxx.fomo.Minecraft;
 
 import static com.jamesinaxx.fomo.Discord.Discord.sendMessage;
 
+import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -14,7 +15,7 @@ public class Minecraft implements Listener {
   public void onMessage(AsyncPlayerChatEvent event) {
     sendMessage(
       "[Minecraft/" +
-      event.getPlayer().getDisplayName() +
+              ChatColor.stripColor(event.getPlayer().getDisplayName()) +
       "] " +
       event.getMessage()
     );
@@ -24,7 +25,7 @@ public class Minecraft implements Listener {
   public void onPlayerJoin(PlayerJoinEvent event) {
     sendMessage(
       "[Minecraft] " +
-      event.getPlayer().getDisplayName() +
+              ChatColor.stripColor(event.getPlayer().getDisplayName()) +
       " has joined the chat"
     );
   }
@@ -32,7 +33,7 @@ public class Minecraft implements Listener {
   @EventHandler
   public void onPlayerLeave(PlayerQuitEvent event) {
     sendMessage(
-      "[Minecraft] " + event.getPlayer().getDisplayName() + " has left the chat"
+      "[Minecraft] " + ChatColor.stripColor(event.getPlayer().getDisplayName()) + " has left the chat"
     );
   }
 }
