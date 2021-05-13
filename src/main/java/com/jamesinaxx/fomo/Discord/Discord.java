@@ -24,7 +24,7 @@ public class Discord extends ListenerAdapter {
   @Override
   public void onMessageReceived(MessageReceivedEvent event) {
     if (
-      event.getChannel().getId().equals(config.getString("channel")) &&
+      event.getChannel().getId().equals(Objects.requireNonNull(config.get("channel")).toString()) &&
       !event.getAuthor().isBot() &&
       CommandHandler(event.getMessage())
     ) {
