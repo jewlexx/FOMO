@@ -15,7 +15,7 @@ public class Minecraft implements Listener {
   public void onMessage(AsyncPlayerChatEvent event) {
     sendMessage(
       "[Minecraft/" +
-              ChatColor.stripColor(event.getPlayer().getDisplayName()) +
+              ChatColor.stripColor(event.getPlayer().getName()) +
       "] " +
       event.getMessage()
     );
@@ -25,7 +25,7 @@ public class Minecraft implements Listener {
   public void onPlayerJoin(PlayerJoinEvent event) {
     sendMessage(
       "[Minecraft] " +
-              ChatColor.stripColor(event.getPlayer().getDisplayName()) +
+              ChatColor.stripColor(event.getPlayer().getName()) +
       " has joined the chat"
     );
   }
@@ -33,7 +33,7 @@ public class Minecraft implements Listener {
   @EventHandler
   public void onPlayerLeave(PlayerQuitEvent event) {
     sendMessage(
-      "[Minecraft] " + ChatColor.stripColor(event.getPlayer().getDisplayName()) + " has left the chat"
+      "[Minecraft] " + ChatColor.stripColor(event.getPlayer().getName()) + " has left the chat"
     );
   }
 }
